@@ -1,0 +1,83 @@
+import styled, { css } from 'styled-components';
+
+import Tooltip from '../Tooltip';
+
+interface ContainerProps {
+  isFocused: boolean;
+  isFilled: boolean;
+  isErrored: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
+  background: #232129;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
+
+  color: #666360;
+  border: 2px solid #232129;
+
+  display: flex;
+  align-items: center;
+
+  & + div {
+    margin-top: 8px;
+  }
+  ${(props) =>
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
+
+  // muda a cor da borda e do icone de acordo com o valor do parametro "isFocused";
+  ${(props) =>
+    props.isFocused &&
+    css`
+      color: #ff9000;
+      border-color: #ff9000;
+    `}
+
+  // muda a cor do icone de acordo com o valor do parametro "isFilled";
+  ${(props) =>
+    props.isFilled &&
+    css`
+      color: #ff9000;
+    `}
+
+
+
+  input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    color: #f4ede8;
+
+    &::placeholder {
+      color: #666360;
+    }
+  }
+
+  // > para pegar o primeiro svg que tiver;
+  > svg {
+    margin-right: 16px;
+  }
+`;
+
+// estilizando um component importado
+export const Error = styled(Tooltip)`
+  height: 20px;
+  margin-left: 16px;
+
+  svg {
+    margin: 0;
+  }
+
+  span {
+    background: #c53030;
+    color: #fff;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
+  }
+`;
