@@ -4,6 +4,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -12,38 +13,52 @@ import Button from '../../components/Button';
 
 import { Container, Content, Background } from './styles';
 
+interface SignInFormData {
+  email: string;
+  password: string;
+}
+
 const SignIn: React.FC = () => {
   // useRef: utilizado para refenciar algum elemento na tela (Parecido com o getElementById);
   // FormHandles: são as tipagem da referencia "Form" do @unform;
   const formRef = useRef<FormHandles>(null);
 
+  const { signIn } = useAuth();
+
   // essa função esta sendo emitida por um component unform, consegue pegar os valores por referencia vindo do component Input;
-  const handleSubmit = useCallback(async (data: Record<string, unknown>) => {
-    try {
-      // limpando os erros;
-      formRef.current?.setErrors({});
+  const handleSubmit = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        // limpando os erros;
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail obrigatorio')
-          .email('Digite um e-mail valido'),
-        password: Yup.string().required('Senha obrigatoria'),
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail obrigatorio')
+            .email('Digite um e-mail valido'),
+          password: Yup.string().required('Senha obrigatoria'),
+        });
 
-      // executa as verificações a cima, com o nosso data com as informações do nosso form;
-      await schema.validate(data, {
-        abortEarly: false, // para retorna todos os erros que ocorreu;
-      });
-    } catch (err) {
-      console.log(err);
+        // executa as verificações a cima, com as informações do nosso form (data);
+        await schema.validate(data, {
+          abortEarly: false, // para retorna todos os erros que ocorreu;
+        });
 
-      // getValidationErrors: função onde filtra todos os errors;
-      const errors = getValidationErrors(err);
+        // função vinda do useContext; que esta executando no arquivo context/AuthContext.tsx;
+        signIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        // getValidationErrors: função onde filtra todos os errors;
+        const errors = getValidationErrors(err);
 
-      // coloca os errors em tela ???
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        // coloca os errors em tela ???
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [signIn],
+  );
 
   return (
     <Container>

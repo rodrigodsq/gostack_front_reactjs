@@ -47,10 +47,33 @@
 
   }
 
-  # -----------------------USECALLBACK-------------------------------
+# -----------------------USECALLBACK-------------------------------
 
-   * sempre que O component atualizar todos as suas funções são recriadas e isso acaba enchendo muito a memoria, para isso ñ acontecer usamos o useCallback, que sempre relembra as funções;  //SEMPRE DEVEMOS USAR UseCallback PARA CRIAR FUNÇÔES;
+  * sempre que O component atualizar todos as suas funções são recriadas e isso acaba enchendo muito a memoria, para isso ñ acontecer usamos o useCallback, que sempre relembra as funções;  //SEMPRE DEVEMOS USAR UseCallback PARA CRIAR FUNÇÔES;
 
-   # -----------------------YUP------------------------------------
+# -----------------------YUP------------------------------------
 
-   * yarn add yup   :   dependencia para validação de formularios;
+  * yarn add yup   :   dependencia para validação de formularios;
+
+
+# ---------------------- API DE CONTEXTO --------------------------
+
+* é uma variavel que fica acessivel de forma global ou não global na aplicação; (Bastante utilizado para armazenar dados de autenticação);
+
+* funcionalidade: em um arquivo especifico é criado/instanciado uma const do createContext, que sera responsavel por toda iteração em nossos arquivos.
+  - Essa var é passada em volta das outras tags no arquivo principal app.tsx, para que fique acessivel em toda aplicação,
+  - e tudo que sera retornado para o restante da aplicação vem dessa instacia, por isso criamos um component no arquivo onde essa instancia está, nesse component poderá ter estados e funções que serão exportados em toda aplicação.
+
+EX: context/AuthContext;
+  - AuthContext  :   arquivo principal de instancia do createContext, é utilizado como tag (leia abaixo);
+  - <AuthContext.Provider> :  dentro da tag <AuthContext.Provider> são passadas os valores que serão exportados de forma global no useContext ;
+  - sigIn  : função que é passada na tag <AuthContext.Provider>, para autenticação(login);
+  - sigIn  : função para deslogar o usuario autenticado, que limpa os dados de auteticação no localstorage e no state data;
+  - [data, setData]  :   estado que armazenar os dados do usuario autenticado, ao iniciar ele ja verifica se existe algum usuario autenticado no localstorage;
+  - AuthProvider : component do createContext que vai ser exportado p app.tsx, nele tbm fica todos os dados(variaveis e funções) que serão exportados p outros arquivos;
+  - useAuth()  :   criando hook de autenticação;
+
+
+# --------------------------------------------------
+
+* children  :   Tudo que o elemento receber como filho sera um children;
