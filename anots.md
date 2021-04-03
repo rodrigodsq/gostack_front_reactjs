@@ -80,6 +80,11 @@ EX: context/AuthContext;
 
 * não funciona em elementos html, temos que usar em elementos do proprio react-spring
 
+
+# -------------------BIBLIOTECA DE ROTAS -------------------------
+
+* yarn add react-router-dom   :   biblioteca de roteamento da aplicação;
+
 # --------------------------------------------------
 
 * children  :   Tudo que o elemento receber como filho sera um children;

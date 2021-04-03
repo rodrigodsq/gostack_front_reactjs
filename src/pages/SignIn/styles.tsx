@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signInBackgroundImg from '../../assets/sign-in-background.png';
@@ -18,9 +18,34 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  place-content: center; // faz o mesmo que align-item e justify-content, coloca ao meio;
+  justify-content: center;
+  //place-content: center; // faz o mesmo que align-item e justify-content, coloca ao meio;
   width: 100%;
   max-width: 550px;
+`;
+
+// para fazer animação de tela vindo da esquerda p direita usando keyframes (proprieda de animação css);
+const appearFromLeft = keyframes`
+  // posição inicial, da onde vem (começo);
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  // posição final, onde o elemento vai ficar;
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  // iniciando a animação;
+  animation: ${appearFromLeft} 1s;
 
   form {
     margin: 15px 0;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signUpBackgroundImg from '../../assets/sign-up-background.png';
@@ -18,9 +18,34 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  place-content: center; // faz o mesmo que align-item e justify-content, coloca ao meio;
+  justify-content: center;
+  //place-content: center; // faz o mesmo que align-item e justify-content, coloca ao meio;
   width: 100%;
   max-width: 550px;
+`;
+
+// para fazer animação de tela vindo da esquerda p direita usando keyframes (proprieda de animação css);
+const appearFromRight = keyframes`
+  // posição inicial, da onde vem (começo);
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  // posição final, onde o elemento vai ficar;
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  // iniciando a animação;
+  animation: ${appearFromRight} 1s;
 
   form {
     margin: 15px 0;
@@ -46,7 +71,7 @@ export const Content = styled.div`
 
   // sinal > significa que so ira afetar as tag "a" no msm nivel, não as tags filhas;
   > a {
-    color: #f4ede8;
+    color: #ff9000;
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -60,7 +85,7 @@ export const Content = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#f4ede8')};
+      color: ${shade(0.2, '#ff9000')};
     }
   }
 `;
