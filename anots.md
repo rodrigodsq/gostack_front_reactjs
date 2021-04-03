@@ -74,6 +74,16 @@ EX: context/AuthContext;
   - useAuth()  :   criando hook de autenticação;
 
 
+# ------------------ BLIBIOTECA DE ANIMAÇÕES ---------------------
+
+* $ yarn add react-spring@8.0.27   :   biblioteca de animações(So funcionou bem essa versão);
+
+* não funciona em elementos html, temos que usar em elementos do proprio react-spring
+
 # --------------------------------------------------
 
 * children  :   Tudo que o elemento receber como filho sera um children;
+
+* components declarados no app.tsx (em forma de tag) ficam disponiveis globalmente;
+
+* uma função é automaticamente retornada de um useEffect se o component (toast) deixar de existir (caso o usuario feche o toast antes dos 3segundos ai ja executa a função) para que ele ñ tente fechar algo que ja foi fechado;

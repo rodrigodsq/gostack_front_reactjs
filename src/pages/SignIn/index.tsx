@@ -4,7 +4,8 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationsErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -24,6 +25,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   // essa função esta sendo emitida por um component unform, consegue pegar os valores por referencia vindo do component Input;
   const handleSubmit = useCallback(
@@ -45,19 +47,27 @@ const SignIn: React.FC = () => {
         });
 
         // função vinda do useContext; que esta executando no arquivo context/AuthContext.tsx;
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
       } catch (err) {
-        // getValidationErrors: função onde filtra todos os errors;
-        const errors = getValidationErrors(err);
+        // verificando se o error é uma instancia de Yup. (se o erro veio do yup)
+        if (err instanceof Yup.ValidationError) {
+          // getValidationErrors: função onde filtra todos os errors;
+          const errors = getValidationErrors(err);
 
-        // coloca os errors em tela ???
-        formRef.current?.setErrors(errors);
+          // coloca os errors em tela ???
+          formRef.current?.setErrors(errors);
+        }
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        });
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
