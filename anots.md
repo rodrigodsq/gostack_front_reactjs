@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file -->
 # -----------------------------UNFORM---------------------------
 
 * yarn add @unform/core @unform/web   :   gerenciado de formulario, pois criar um state p cada valor do meu form desgasta muito a aplicação
@@ -92,3 +93,8 @@ EX: context/AuthContext;
 * components declarados no app.tsx (em forma de tag) ficam disponiveis globalmente;
 
 * uma função é automaticamente retornada de um useEffect se o component (toast) deixar de existir (caso o usuario feche o toast antes dos 3segundos ai ja executa a função) para que ele ñ tente fechar algo que ja foi fechado;
+
+
+# -------------------- ANOTS ---------------------------
+
+- `figma gobarber`: https://www.figma.com/file/BXCihtXXh9p37lGsENV614/GoBarber?node-id=0%3A1
