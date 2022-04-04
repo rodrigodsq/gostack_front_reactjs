@@ -98,3 +98,17 @@ EX: context/AuthContext;
 # -------------------- ANOTS ---------------------------
 
 - `figma gobarber`: https://www.figma.com/file/BXCihtXXh9p37lGsENV614/GoBarber?node-id=0%3A1
+
+- `useEffect`: serve para disparar uma função sempre que alguma variavel for alterada;
+
+- nunca criar/manipular novos valores/variaveis dentro do html (return) do template react;
+- pq caso tenha alguma alteração em seu estado ele provoca um nova renderização, e com isso vai recarregar tudo novamente;
+- por isso temos os hooks, no caso do useCallback que sempre relembra as funções;
+- `useMemo`: para que não seja renderizado novamente caso altere algum estado, temos o useMemo que sempre relembra os dados e não recarrega o component (parecido com o useCallback so que para variaveis);
+
+- `useCallback` retorna uma função;
+- `useEffect` executa uma função;
+- `useMemo` retorna um valor;
+
+rodrigo = 12341234
+one = 123456

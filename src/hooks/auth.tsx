@@ -1,9 +1,15 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  avatar_url: string;
+}
+
 interface AuthState {
   token: string;
-  user: unknown; // era p ser object :/
+  user: User;
 }
 
 interface SignInCredentials {
@@ -12,7 +18,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: unknown;
+  user: User;
   signIn(credentials: SignInCredentials): Promise<void>; // definindo uma função passando a tipagem de SignInCredentials e com uma promise de retorno;
   signOut(): void;
 }
@@ -21,11 +27,13 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState | null>(() => {
+  const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@GoBarber:token');
     const user = localStorage.getItem('@GoBarber:user');
 
     if (token && user) {
+      // definindo como padrão que toda header de requisição terá um 'authorization' com o valor do 'Bearer' em todas as requisições;
+      api.defaults.headers.authorization = `Bearer ${token}`;
       return { token, user: JSON.parse(user) }; // retornando para o estado(data)
     }
 
@@ -43,6 +51,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@GoBarber:token', token);
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
 
+    // definindo como padrão que toda header de requisição terá um 'authorization' com o valor do 'Bearer' em todas as requisições;
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
     setData({ token, user });
   }, []);
 
@@ -54,7 +65,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data?.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

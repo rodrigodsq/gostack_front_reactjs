@@ -38,7 +38,10 @@ const ResetPassword: React.FC = () => {
 
         const schema = Yup.object().shape({
           password: Yup.string().required('Senha obrigatoria'),
-          password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Confirmação incorreta')
+          password_confirmation: Yup.string().oneOf(
+            [Yup.ref('password'), null],
+            'Confirmação incorreta',
+          ),
         });
 
         // executa as verificações a cima, com as informações do nosso form (data);
@@ -49,14 +52,14 @@ const ResetPassword: React.FC = () => {
         const { password, password_confirmation } = data;
         const token = location.search.replace('?token=', '');
 
-        if(!token) {
+        if (!token) {
           throw new Error();
         }
 
         await api.post('/password/reset', {
           password,
           password_confirmation,
-          token
+          token,
         });
 
         history.push('/');

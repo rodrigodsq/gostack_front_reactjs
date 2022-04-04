@@ -24,7 +24,7 @@
       "prettier"
   ],
   "rules": {
-    "prettier/prettier": "warn",
+    "prettier/prettier": "error",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
@@ -34,6 +34,7 @@
     "no-unused-expressions": "off",
     "react/jsx-filename-extension": [1, {"extensions": [".tsx"] }],
     "import/prefer-default-export": "off",
+    "import/no-duplicates": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
@@ -50,7 +51,8 @@
     ],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/camelcase":"off"
+    "@typescript-eslint/camelcase":"off",
+    "camelcase": "off"
   },
   "settings": {
     "import/resolver": {

@@ -1,0 +1,101 @@
+{
+    //setando aonde vamos aplicar as configurações, no caso sera aqui mesmo nesse diretorio pois esta com o ponto .
+	"folders": [
+		{
+			"path": "."
+		}
+    ],
+    "settings": {
+      "psi-header.config": {},
+      "psi-header.lang-config": [],
+      "psi-header.changes-tracking": {},
+      "psi-header.templates": [],
+      "files.trimFinalNewlines": true,
+      "files.trimTrailingWhitespace": true,
+      "javascript.preferences.quoteStyle": "single",
+      "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+      "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+      "typescript.preferences.quoteStyle": "single",
+      "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+      "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+      "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+      "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+      "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+      "editor.detectIndentation": true,
+      "editor.insertSpaces": true,
+      "prettier.tabWidth": 2,
+
+      //------------------------------------//
+
+      //"prettier.useTabs": true,
+      "emmet.triggerExpansionOnTab": true,
+      "editor.tabSize": 2,
+      "editor.wordWrap": "on",
+      "javascript.updateImportsOnFileMove.enabled": "always",
+      "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true,
+          "source.fixAll": true,
+          "source.organizeImports": false
+      },
+      "eslint.autoFixOnSave": true,
+      "eslint.validate": [
+      {
+          "language": "javascript",
+          "autoFix": true,
+      },
+      {
+          "language": "javascriptreact",
+          "autoFix": true,
+      },
+      ],
+      "[javascript]": {
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true,
+          }
+      },
+      "[javascriptreact]":{
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true,
+          }
+      },
+      "[typescript]":{
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true,
+          }
+      },
+      "[typescriptreact]": {
+          "editor.codeActionsOnSave": {
+              "source.fixAll.eslint": true,
+          }
+      },
+      "[jsonc]": {
+          "editor.defaultFormatter": "vscode.json-language-features"
+      },
+      "material-icon-theme.folders.associations": {
+          "infra": "app",
+          "entities": "class",
+          "schemas": "class",
+          "typeorm": "database",
+          "repositories": "mappings",
+          "http": "container",
+          "migrations": "tools",
+          "modules": "components",
+          "implementations": "core",
+          "dtos": "typescript",
+          "fakes": "mock"
+      },
+      "material-icon-theme.files.associations": {
+          "ormconfig.json": "database",
+          "tsconfig.json": "tune"
+      },
+      "[scss]": {
+        "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+      },
+      "debug.console.fontSize": 13,
+      "markdown.preview.fontSize": 13,
+      "terminal.integrated.fontSize": 13,
+      "editor.accessibilityPageSize": 12,
+      "window.zoomLevel": -1,
+      "editor.fontSize": 13
+  }
+}
