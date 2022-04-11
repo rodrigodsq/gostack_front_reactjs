@@ -110,5 +110,5 @@ EX: context/AuthContext;
 - `useEffect` executa uma função;
 - `useMemo` retorna um valor;
 
-rodrigo = 12341234
+rodrigo = 123123
 one = 123456

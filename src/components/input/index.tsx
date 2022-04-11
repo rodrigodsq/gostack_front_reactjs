@@ -14,11 +14,17 @@ import { Container, Error } from './styles';
 // criando uma inteface com os tipos de um input, para passar no component "Input";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  containerStyle?: Record<string, unknown>;
   icon?: React.ComponentType<IconBaseProps>; // definindo chave que recebe um component como parametro;
 }
 
 // passando o tipo InputProps para o component; (funciona como o Proptypes do react com js);
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  containerStyle = {},
+  icon: Icon,
+  ...rest
+}) => {
   // useRef: utilizado para refenciar algum elemento na tela (Parecido com o getElementById);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -51,7 +57,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+    <Container
+      style={containerStyle}
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+    >
       {/* Passando os parametros recebido no rest diretamente para a tag input */}
       {Icon && <Icon size={20} />}
       <input
